@@ -5,9 +5,17 @@
  */
 /**
  *
- * @author arana
+ * @author vubi
  */
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+/**
+ *
+ * @author Vubi
+ */
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -20,22 +28,22 @@ public class Persona {
     private int gg, mm, aaaa;
     private char sesso;
     private String lnas;
-    private String prv;
+
     private String cfiscale;
-    private String csvFile = "/Users/vubi/Desktop/anno 5/Codici_Catastali.csv";
+    private String csvFile = "/Users/vubi/Desktop/anno 5/stage/Codici_Catastali.csv";
       final  int D = 20;
     public Persona()
     {
-        cognome=nome=lnas=prv="";
+        cognome=nome=lnas="";
         cfiscale="";
         gg=mm=aaaa=0;   
     }
     
-     public Persona(String cog, String nom, int g, int m, int a, char sex, String ln, String pv)
+     public Persona(String cog, String nom, int g, int m, int a, char sex, String ln )
     {
-       Set(cog,nom,g,m,a,sex,ln,pv);        
+       Set(cog,nom,g,m,a,sex,ln);        
     }
-    public boolean Set(String c, String n, int g, int m, int a, char uomo, String ln, String pv)
+    public boolean Set(String c, String n, int g, int m, int a, char uomo, String ln)
     {
         cognome=c;
         nome=n;
@@ -43,7 +51,6 @@ public class Persona {
         mm=m;
         aaaa=a;
         lnas=ln;
-        prv=pv;
             
             if((uomo!='M')&& (uomo!='F'))
                 return false;
@@ -59,6 +66,7 @@ public class Persona {
         return cognome;
     }
     
+    //GET DATI//
     public String GetNome(){
         return nome;
     }
@@ -76,16 +84,13 @@ public class Persona {
     public String GetLuogo(){
     return lnas;
     }
-    public String GetProvincia(){
-        return prv;
-    }
-    
     public String GetCfiscale(){
         return cfiscale;
         
     } 
-    
-    @SuppressWarnings("empty-statement")
+     @SuppressWarnings("empty-statement")
+     
+        //NOME//
 	public char [] gest_n(String s)
 	{
             char vocali[] = new char[D];
@@ -107,7 +112,7 @@ public class Persona {
 			{
 				temp = s.split(" ");
 				s = String.valueOf(temp[0]);
-			    s = s.concat(temp[1]);
+			        s = s.concat(temp[1]);
 			}
                 }
                 
@@ -136,12 +141,6 @@ public class Persona {
                         
 			default :
 				consonanti[c] = s.charAt(i);c++;
-                                 System.out.println("VETTORE CONSONANTI\nconsonanti["+c+"]="+consonanti[c]);
-                        /*if(c > 3)
-                        {
-                           consonanti[1] = ' ';
-                        }
-                                */
 				break;
                         }
 		}
@@ -167,15 +166,9 @@ public class Persona {
 					{
 						consonanti[k] = consonanti[l];
                                                 k++;
-                                              //  c--;
                                          }
                         }
-                        for(int i = 0;i < consonanti.length;i++)
-                        {
-                             System.out.println("VETTORE SENZA DOPPIONI\nconsonanti["+i+"]="+consonanti[i]);
-                        }
-                       
-                          char t[]=new char[D];
+                            char t[]=new char[D];
                             for(int i = 0,v=0;i < vocali.length;i++)
                             {
                                if(vocali[i]!=' ')
@@ -195,10 +188,6 @@ public class Persona {
                                }
                             }
                           consonanti = p;
-                          for(int i = 0 ; i < consonanti.length;i++)
-                          {
-                              System.out.println("VETTORE SENZA DOPPIONI E SENZA SPAZI\nconsonanti["+i+"]="+consonanti[i]);
-                          }
                         
                         if(c>3)
                         {
@@ -213,24 +202,17 @@ public class Persona {
                                  }
                          
                             }
-                           for(int i = 0 ; i < consonanti.length;i++)
-                          {
-                              System.out.println("VETTORE CORRETTO\nconsonanti["+i+"]="+consonanti[i]);
-                          }
+                        
                         for(int i = 0; i < vett.length ;i++)
                         {
                            vett[i] = consonanti[i];
                            System.out.println(vett[i]);
                         }
-                      }
-                        if(c == 3)
-                        {
-                            vett = consonanti;
-                          for(int i = 0 ; i < vett.length;i++)
-                          {
-                              System.out.println("VETTORE CORRETTO\nconsonanti["+i+"]="+vett[i]);
-                          }
                         }
+                      if(c==3)
+                      {
+                          vett = consonanti;
+                      }
                         if(c < 3)
                         {
                            int i = 0;
@@ -249,7 +231,7 @@ public class Persona {
                         }
                         
                        
-                      /* 
+                        
                          for(int i = 0;i < vett.length;i++)
                         {
                             if(vett[i]== ' ')
@@ -259,18 +241,12 @@ public class Persona {
                                     vett[i] = 'x';
                                 }
                             }
-                        
                         }
-                        
-          
-			//System.out.println(s + "\nvocali : " +String.valueOf(vocali));
-			//System.out.println("consonanti : " +String.valueOf(consonanti));
-                       
-	*/
- return vett;
+                         return vett;
         }
- 
-       @SuppressWarnings("empty-statement")
+    @SuppressWarnings("empty-statement")
+    
+        //cognome//
 	public char [] gest_c(String s)
 	{
             char vocali[] = new char[D];
@@ -286,17 +262,6 @@ public class Persona {
                 }
 		String temp[] = new String[2];
                 s = s.replace(" ", "");
-		/*
-                for(int i = 0; i < s.length();i++)
-		{
-			if(s.charAt(i) == ' ')
-			{
-				temp = s.split(" ");
-				s = String.valueOf(temp[0]);
-			    s = s.concat(temp[1]);
-			}
-                }
-                */
                 int c=0;
                 for(int i = 0,v=0;i < s.length();i++)
 		{
@@ -325,7 +290,6 @@ public class Persona {
 				break;
 			}
 		}
-                //System.out.println("Cognome : " + s);
 		
 		
 			for(int i = 0; i < vocali.length;i++)
@@ -378,7 +342,6 @@ public class Persona {
                         {
                              int i = 0;
                        for(;!(vett[i] == '\0');i++);
-                      // System.out.println(i);
                        if(i == 2)
                        {
                           vett[2] = vocali[0];
@@ -389,47 +352,26 @@ public class Persona {
                            vett[2] = vocali[1];
                        }
                       
-                        }
-                      
-                       /* 
-                         for(int i = 0;i < vett.length;i++)
-                        {
-                            if(vett[i]== ' ')
-                            {
-                                for(int v = 0;v < vett.length;v++,i++)
-                                {
-                                    vett[i] = 'x';
-                                }
-                            }
-                        }
-*/
-			//System.out.println(s + "\nvocali : " +String.valueOf(vocali));
-			//System.out.println("consonanti : " +String.valueOf(consonanti));
-                       
-	}
+                    }
+            }
  return vett;
         }
-    public String Calcola()
-    { 
         
-        /*  PRENDI LE CONSONANTI 
-                */
-        
-        char consCog[]= this.gest_c(cognome);
-        char consNom[]= this.gest_n(nome);
-        
-       // System.out.println("cognome : "+String.valueOf(consCog));
-        //System.out.println("nome : "+String.valueOf(consNom));
-        
+           
         /*ANNO DI NASCITA*/
+        public char [] Cannodin(int b)
+        {
+            String nasc = Integer.toString(aaaa);
+            char codAnno[]=new char[2];
+            codAnno[0]=nasc.charAt(2);
+            codAnno[1]=nasc.charAt(3);
+            return codAnno;
+        }
         
-        String nasc = Integer.toString(aaaa);
-        char codAnno[]=new char[2];
-        codAnno[0]=nasc.charAt(2);
-         codAnno[1]=nasc.charAt(3);
-         
         /*MESE DI NASCITA*/
-        
+        public char Cmesen(int c)
+        {
+              
         char codMese;
         
         switch(mm) 
@@ -482,14 +424,16 @@ public class Persona {
                 break;    
                 
             default :
-                return "";
+                return ' ';
                 
         }
+        return codMese;
+        }
         
-        
-        /*GIORNO DI NASCITA*/
-        
-        String ggCod = " ";
+         /*GIORNO DI NASCITA*/
+        public String Csesso(char a)
+        {
+             String ggCod = " ";
         if(sesso=='F')
         {
             gg+=40;
@@ -497,55 +441,16 @@ public class Persona {
             ggCod=Integer.toString(gg);
          if(ggCod.length() == 1)
              ggCod='0'+ggCod;
-        /*COMUNE DI NASCITA*/
-       /*
-        String csvFile = "/Users/Kevin/Documents/Codici_Catastali.csv";
-        BufferedReader br = null;
-        String line = "";
-        String cvsSplitBy = ";";
-        String codCom = lnas.toUpperCase();
-        //lettura del file csv
-        try 
-        {
-
-            br = new BufferedReader(new FileReader(csvFile));
-            while ((line = br.readLine()) != null)
-            {
-
-                // use comma as separator
-               
-               String[] country = line.split(cvsSplitBy);
-               //stampa dati csv
-                System.out.println("Comune : " + country[0] + " , Codice catastale : " + country[1]);
-              //  if(codCom.equals(country[0]))
-               
-            }
-
+         
+         return ggCod;
+         
         }
-        catch (FileNotFoundException e) 
+        
+          /*COMUNE DI NASCITA*/
+        public String Ccomune (String a)
         {
-            e.printStackTrace();
-        } 
-        catch (IOException e) 
-        {
-            e.printStackTrace();
-        } 
-        finally 
-        {
-            if (br != null) 
-            {
-                try
-                {
-                    br.close();
-                } 
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        }
-        */
-       String csvFile = "/Users/Kevin/Documents/Codici_Catastali.csv";
+            
+       String csvFile = "/Users/vubi/Desktop/anno 5/stage/Codici_Catastali.csv";
         BufferedReader br = null;
         String line = "";
         String cvsSplitBy = ";";
@@ -593,21 +498,13 @@ public class Persona {
                 }
             }
         }
-      
-       
+      return codCom;
+        }
         
         /*CODICE DI CONTROLLO*/
-        
-        
-       cfiscale=String.valueOf(consCog);
-       cfiscale+=String.valueOf(consNom);
-       cfiscale+=String.valueOf(codAnno);
-       cfiscale+=String.valueOf(codMese);
-       cfiscale+=String.valueOf(ggCod);
-       cfiscale+=String.valueOf(codCom);
-       cfiscale=cfiscale.toUpperCase();
-        //metto le celle del vettore in posizione pari nel vettore pari
-       char vett_pari[] = new char[14];
+        public String Ccodcon()
+        {
+          char vett_pari[] = new char[14];
        for (int i=1,v=0;i<=14;i+=2,v++)
        {
            vett_pari[v] = cfiscale.charAt(i);
@@ -752,97 +649,13 @@ public class Persona {
      sd = vett_d[i]+sd;
      //System.out.println("vett_d["+i+"]="+vett_d[i]);
  }
- System.out.println("somma delle celle del vettore dispari : " + sd);
+ //System.out.println("somma delle celle del vettore dispari : " + sd);
  //somma vettore pari e dispari e divisione
 int s = 0;
 s = sp+sd;
-System.out.println("somma dei pari e dei dispari : " + s);
+//System.out.println("somma dei pari e dei dispari : " + s);
 int r = s%26;
-System.out.println("resto della divisione : " + r);
-/*      int sommaPari=0;
-for (int i=1;i<=14;i+=2){
-switch (cfiscale.charAt(i)) {
-case '0': {sommaPari+=0;break;}
-case '1': {sommaPari+=1;break;}
-case '2': {sommaPari+=2;break;}
-case '3': {sommaPari+=3;break;}
-case '4': {sommaPari+=4;break;}
-case '5': {sommaPari+=5;break;}
-case '6': {sommaPari+=6;break;}
-case '7': {sommaPari+=7;break;}
-case '8': {sommaPari+=8;break;}
-case '9': {sommaPari+=9;break;}
-case 'A': {sommaPari+=0;break;}
-case 'B': {sommaPari+=1;break;}
-case 'C': {sommaPari+=2;break;}
-case 'D': {sommaPari+=3;break;}
-case 'E': {sommaPari+=4;break;}
-case 'F': {sommaPari+=5;break;}
-case 'G': {sommaPari+=6;break;}
-case 'H': {sommaPari+=7;break;}
-case 'I': {sommaPari+=8;break;}
-case 'J': {sommaPari+=9;break;}
-case 'K': {sommaPari+=10;break;}
-case 'L': {sommaPari+=11;break;}
-case 'M': {sommaPari+=12;break;}
-case 'N': {sommaPari+=13;break;}
-case 'O': {sommaPari+=14;break;}
-case 'P': {sommaPari+=15;break;}
-case 'Q': {sommaPari+=16;break;}
-case 'R': {sommaPari+=17;break;}
-case 'S': {sommaPari+=18;break;}
-case 'T': {sommaPari+=19;break;}
-case 'U': {sommaPari+=20;break;}
-case 'V': {sommaPari+=21;break;}
-case 'W': {sommaPari+=22;break;}
-case 'X': {sommaPari+=23;break;}
-case 'Y': {sommaPari+=24;break;}
-case 'Z': {sommaPari+=25;break;}
-}
-}
-int sommaDispari=0;
-for (int i=0;i<=13;i+=2) {
-switch (cfiscale.charAt(i)) {
-case '0': {sommaDispari+=1;break;}
-case '1': {sommaDispari+=0;break;}
-case '2': {sommaDispari+=5;break;}
-case '3': {sommaDispari+=7;break;}
-case '4': {sommaDispari+=9;break;}
-case '5': {sommaDispari+=13;break;}
-case '6': {sommaDispari+=15;break;}
-case '7': {sommaDispari+=17;break;}
-case '8': {sommaDispari+=19;break;}
-case '9': {sommaDispari+=21;break;}
-case 'A': {sommaDispari+=1;break;}
-case 'B': {sommaDispari+=0;break;}
-case 'C': {sommaDispari+=5;break;}
-case 'D': {sommaDispari+=7;break;}
-case 'E': {sommaDispari+=9;break;}
-case 'F': {sommaDispari+=13;break;}
-case 'G': {sommaDispari+=15;break;}
-case 'H': {sommaDispari+=17;break;}
-case 'I': {sommaDispari+=19;break;}
-case 'J': {sommaDispari+=21;break;}
-case 'K': {sommaDispari+=2;break;}
-case 'L': {sommaDispari+=4;break;}
-case 'M': {sommaDispari+=18;break;}
-case 'N': {sommaDispari+=20;break;}
-case 'O': {sommaDispari+=11;break;}
-case 'P': {sommaDispari+=3;break;}
-case 'Q': {sommaDispari+=6;break;}
-case 'R': {sommaDispari+=8;break;}
-case 'S': {sommaDispari+=12;break;}
-case 'T': {sommaDispari+=14;break;}
-case 'U': {sommaDispari+=16;break;}
-case 'V': {sommaDispari+=10;break;}
-case 'W': {sommaDispari+=22;break;}
-case 'X': {sommaDispari+=25;break;}
-case 'Y': {sommaDispari+=24;break;}
-case 'Z': {sommaDispari+=23;break;}
-}
-}
-int interoControllo = (sommaPari+sommaDispari)%26;
-*/
+//System.out.println("resto della divisione : " + r);
 String carattereControllo="";
 
 switch (r) {
@@ -873,7 +686,30 @@ case 23:{carattereControllo="X";break;}
 case 24:{carattereControllo="Y";break;}
 case 25:{carattereControllo="Z";break;}
 }
-      cfiscale = cfiscale.concat(carattereControllo);  
+return carattereControllo;
+
+        }
+        
+    public String Calcola()
+    { 
+        
+        //  PRENDI LE CONSONANTI //
+        char consCog[]= this.gest_c(cognome);
+        char consNom[]= this.gest_n(nome);
+        char Cannodin []= this.Cannodin(aaaa);
+        char Cmesen = this.Cmesen(mm);
+        String Csesso = this.Csesso(sesso);
+        String Ccomune = this.Ccomune(lnas);
+       cfiscale=String.valueOf(consCog);
+       cfiscale+=String.valueOf(consNom);
+       cfiscale+=String.valueOf(Cannodin);
+       cfiscale+=String.valueOf(Cmesen);
+       cfiscale+=String.valueOf(Csesso);
+       cfiscale+=String.valueOf(Ccomune);
+       cfiscale=cfiscale.toUpperCase();
+        //metto le celle del vettore in posizione pari nel vettore pari
+      String cCcodcon = this.Ccodcon();
+      cfiscale = cfiscale.concat(cCcodcon);  
         return GetCfiscale();
     }
 
