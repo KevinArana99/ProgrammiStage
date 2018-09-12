@@ -67,11 +67,12 @@ public class Data
         mesi.put(12,'T');
         if(mesi.containsKey(m))
             vett = vett.concat(String.valueOf(mesi.get(m)));
+       
         //ANNO
         String anno = Integer.toString(a);
         char codAnno[]=new char[2];
-            codAnno[0]=anno.charAt(2);
-            codAnno[1]=anno.charAt(3);
+        codAnno[0]=anno.charAt(2);
+        codAnno[1]=anno.charAt(3);
         vett = vett.concat(String.valueOf(codAnno));
         return String.valueOf(vett);
     }
