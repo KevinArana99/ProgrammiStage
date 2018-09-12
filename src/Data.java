@@ -17,11 +17,11 @@ public class Data
     {
         g=m=a=0;
     }
-    public Data(int g,int m,int a)
+    public Data(int a,int m,int g)
     {
         setData(g,m,a);
     }
-    public void setData(int g,int m,int a)
+    public void setData(int a,int m,int g)
     {
         this.g = g;
         this.m = m;
@@ -35,22 +35,16 @@ public class Data
         v[2] = a;
         return v;
     }
-    public String calcola(int g,int m,int a,boolean f)
+    public String calcola(int a,int m,int g,boolean f)
     {
-        String vett="";
-        //GIORNO
-        if(f)
-        {
-            g+=40;
-            this.g = g;
-            String giorno = Integer.toString(g);
-            char codGiorno[]=new char[2];
-            codGiorno[0]=giorno.charAt(2);
-            codGiorno[1]=giorno.charAt(3);
-            vett = vett.concat(String.valueOf(codGiorno));
-        }
-        this.g = g;
-        vett = vett.concat(String.valueOf((char)g));
+         //ANNO
+        String vett = "";
+        System.out.println("anno : "+ a);
+        int r = a%100;
+        System.out.println("resto : "+ r);
+        String anno = Integer.toString(r);
+        vett = vett.concat(anno);
+         System.out.println(vett);
         //MESE      
         Map mesi  = new HashMap();
         mesi.put(1,'A');
@@ -67,13 +61,21 @@ public class Data
         mesi.put(12,'T');
         if(mesi.containsKey(m))
             vett = vett.concat(String.valueOf(mesi.get(m)));
-       
-        //ANNO
-        String anno = Integer.toString(a);
-        char codAnno[]=new char[2];
-        codAnno[0]=anno.charAt(2);
-        codAnno[1]=anno.charAt(3);
-        vett = vett.concat(String.valueOf(codAnno));
+         System.out.println(vett);
+          //GIORNO
+        if(f)
+        {
+            g=g+40;
+            String giorno = Integer.toString(g);
+            vett = vett.concat(giorno);
+            System.out.println(vett);
+        }
+        else
+        {
+            String giorno = Integer.toString(g);
+            vett = vett.concat(giorno);
+            System.out.println(vett);
+        }
         return String.valueOf(vett);
     }
 }
