@@ -6,9 +6,6 @@ import static javafx.scene.text.Font.font;
 import static javafx.scene.text.Font.font;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
-
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -321,7 +318,7 @@ public class Main extends javax.swing.JFrame {
      
         pers.Set(jCOGNOME.getText(), jNOME.getText(),Integer.parseInt(String.valueOf(jComboBox2.getSelectedItem())), Integer.parseInt(String.valueOf(jComboBox3.getSelectedItem())), Integer.parseInt(String.valueOf(jComboBox4.getSelectedItem())), String.valueOf(jComboBox1.getSelectedItem()).toUpperCase().charAt(0), jPAESE.getText().toUpperCase());
        // jCODICEFISCALE.setText(pers.Calcola().toUpperCase());
-       JLabel label = new JLabel(pers.Calcola().toUpperCase());
+       //JLabel label = new JLabel(pers.Calcola().toUpperCase());
        //label.setFont(new font("tahoma",font.BOLD,18));
         JOptionPane.showMessageDialog(this, "Il tuo codice fiscale è :\n" +pers.Calcola().toUpperCase(), "Ho calcolato il tuo codice fiscale!", 1);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -401,6 +398,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel jSesso;
     // End of variables declaration//GEN-END:variables
-Persona pers = new Persona();
+CodiceFiscale pers = new CodiceFiscale();
 
 }
