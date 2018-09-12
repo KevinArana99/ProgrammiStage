@@ -16,10 +16,7 @@
  *
  * @author arana
  */
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+
 public class CodiceFiscale  
 {
     private String cognome;
@@ -88,148 +85,6 @@ public class CodiceFiscale
     {
         return cfiscale;     
     }         
-        /*ANNO DI NASCITA*/
-        public char [] Cannodin(int b)
-        {
-            String nasc = Integer.toString(aaaa);
-            char codAnno[]=new char[2];
-            codAnno[0]=nasc.charAt(2);
-            codAnno[1]=nasc.charAt(3);
-            return codAnno;
-        }
-        /*MESE DI NASCITA*/
-        public char Cmesen(int c)
-        {
-              
-        char codMese;
-        
-        switch(mm) 
-        {
-            case 1 :
-                codMese= 'A';
-                break;
-            case 2 :
-                codMese= 'B';
-                break;
-            
-            case 3 :
-                codMese= 'C';
-                break;
-                
-            case 4 :
-                codMese= 'D';
-                break;
-                
-            case 5 :
-                codMese= 'E';
-                break;    
-                
-            case 6 :
-                codMese= 'H';
-                break;    
-                
-            case 7 :
-                codMese= 'L';
-                break;
-                
-            case 8 :
-                codMese= 'M';
-                break;
-                
-            case 9 :
-                codMese= 'P';
-                break;    
-                
-            case 10 :
-                codMese= 'R';
-                break;    
-                
-            case 11 :
-                codMese= 'S';
-                break;
-                
-            case 12 :
-                codMese= 'T';
-                break;    
-                
-            default :
-                return ' ';
-                
-        }
-        return codMese;
-        }
-        
-         /*GIORNO DI NASCITA*/
-        public String Csesso(char a)
-        {
-             String ggCod = " ";
-        if(sesso=='F')
-        {
-            gg+=40;
-        }
-            ggCod=Integer.toString(gg);
-         if(ggCod.length() == 1)
-             ggCod='0'+ggCod;
-         
-         return ggCod;
-         
-        }
-        
-          /*COMUNE DI NASCITA*/
-        public String Ccomune (String a)
-        {
-            
-       String csvFile = "/Users/Kevin/Documents/Codici_Catastali.csv";
-        BufferedReader br = null;
-        String line = "";
-        String cvsSplitBy = ";";
-        String codCom = lnas.toUpperCase();
-       String[] country;
-        //lettura del file csv
-        try 
-        {
-
-            br = new BufferedReader(new FileReader(csvFile));
-            while ((line = br.readLine()) != null)
-            {
-                // use comma as separator
-                 country = line.split(cvsSplitBy);
-               //stampa dati csv
-                System.out.println("Comune : " + country[0] + " , Codice catastale : " + country[1]);
-              //  if(codCom.equals(country[0]))
-               if(codCom.equals(country[0]))
-               {
-                  codCom = country[1];
-                 break;
-               }
-            }
-            
-        }
-        catch (FileNotFoundException e) 
-        {
-            e.printStackTrace();
-        } 
-        catch (IOException e) 
-        {
-            e.printStackTrace();
-        } 
-        finally 
-        {
-            if (br != null) 
-            {
-                try
-                {
-                    br.close();
-                } 
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        }
-      return codCom;
-        }
-        
         /*CODICE DI CONTROLLO*/
         public String Ccodcon()
         {
@@ -423,23 +278,23 @@ return carattereControllo;
     { 
         Cognome c = new Cognome(cognome);
         Nome n = new Nome(nome);
-     
-        if(sesso == 'f')
+        Data d = new Data(aaaa,mm,gg);
+        LuogoDiNascita l = new LuogoDiNascita (lnas);
+        if((sesso == 'f')||(sesso == 'F'))
             controllo=true;
         else
         controllo=false;
-        Data d = new Data(gg,mm,aaaa);
         String con = c.calcola(cognome);
         String nom = n.calcola(nome);
-        String dat = d.calcola(gg, mm, D, controllo);
+        String dat = d.calcola(aaaa, mm, gg, controllo);
+        String Ccomune = l.calcola(lnas);
         //  PRENDI LE CONSONANTI //
         
-        String Ccomune = this.Ccomune(lnas);
+        
        cfiscale = cfiscale.concat(con);
        cfiscale = cfiscale.concat(nom);
        cfiscale = cfiscale.concat(dat);
-      
-       cfiscale+=String.valueOf(Ccomune);
+      cfiscale = cfiscale.concat(Ccomune);
        cfiscale=cfiscale.toUpperCase();
         //metto le celle del vettore in posizione pari nel vettore pari
       String cCcodcon = this.Ccodcon();
