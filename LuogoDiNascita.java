@@ -12,7 +12,7 @@ import java.io.IOException;
 
 /**
  *
- * @author Kevin
+ * @author Vubi
  */
 public class LuogoDiNascita {
      private String lnas;
