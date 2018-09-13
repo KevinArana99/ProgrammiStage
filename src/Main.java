@@ -300,27 +300,29 @@ public class Main extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:nteger.parseInt(jMM.getText()), Integer.parseInt(jAA.getText()),
        // System.out.println(jSESSO.getText().toUpperCase().charAt(0));//jSESSO.getText().toUpperCase().charAt(0)
-       if(!isAlpha(String.valueOf(jCOGNOME.getText())))
+       if(!isAlpha(String.valueOf(jCOGNOME.getText()))&&String.valueOf(jCOGNOME.getText()).equals(" "))
        {
            JOptionPane.showMessageDialog(this,"Non puoi inserire numeri o segni nel campo 'cognome'!","Errore",2);
            System.exit(0);
        }
-        if(!isAlpha(String.valueOf(jNOME.getText())))
+        if(!isAlpha(String.valueOf(jNOME.getText()))&&String.valueOf(jCOGNOME.getText()).equals(" "))
        {
            JOptionPane.showMessageDialog(this,"Non puoi inserire numeri o segni nel campo 'nome'!","Errore",2);
             System.exit(0);
        }
-         if(!isAlpha(String.valueOf(jPAESE.getText())))
+         if(!isAlpha(String.valueOf(jPAESE.getText()))&&String.valueOf(jCOGNOME.getText()).equals(" "))
        {
            JOptionPane.showMessageDialog(this,"Non puoi inserire numeri o segni nel campo 'luogo di nascita'!","Errore",2);
             System.exit(0);
        }
-     
+        CodiceFiscale pers = new CodiceFiscale();
         pers.Set(jCOGNOME.getText(), jNOME.getText(),Integer.parseInt(String.valueOf(jComboBox2.getSelectedItem())), Integer.parseInt(String.valueOf(jComboBox3.getSelectedItem())), Integer.parseInt(String.valueOf(jComboBox4.getSelectedItem())), String.valueOf(jComboBox1.getSelectedItem()).toUpperCase().charAt(0), jPAESE.getText().toUpperCase());
        // jCODICEFISCALE.setText(pers.Calcola().toUpperCase());
        //JLabel label = new JLabel(pers.Calcola().toUpperCase());
        //label.setFont(new font("tahoma",font.BOLD,18));
         JOptionPane.showMessageDialog(this, "Il tuo codice fiscale è :\n" +pers.Calcola().toUpperCase(), "Ho calcolato il tuo codice fiscale!", 1);
+        pers = null;
+        //System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jPAESEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPAESEActionPerformed
@@ -370,6 +372,7 @@ public class Main extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Main().setVisible(true);
+               
             }
         });
     }

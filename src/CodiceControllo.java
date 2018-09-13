@@ -8,7 +8,17 @@
  *
  * @author Kevin
  */
-public class CodiceControllo 
+public class CodiceControllo extends CodiceFiscale
 {
+    String Ccontrollo;
     
+    public CodiceControllo()
+    {
+        Ccontrollo="";
+    }
+  /*  public void Calcola()
+    {
+        
+    }
+*/
 }
