@@ -1,8 +1,17 @@
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author Kevin
+ */
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,11 +21,11 @@ import java.io.IOException;
 
 /**
  *
- * @author Vubi
+ * @author Kevin
  */
-public class LuogoDiNascita {
+public class LuogoDiNascita 
+{
      private String lnas;
-     
       public LuogoDiNascita()
     {
         lnas="";
@@ -33,7 +42,7 @@ public class LuogoDiNascita {
     public String calcola (String a)
         {
             
-       String csvFile = "/Users/Kevin/Documents/Codici_Catastali.csv";
+       String csvFile = "/Users/vubi/Desktop/anno 5/stage/Codici_Catastali.csv";
         BufferedReader br = null;
         String line = "";
         String cvsSplitBy = ";";
@@ -86,3 +95,4 @@ public class LuogoDiNascita {
     
     
 }
+

@@ -28,11 +28,13 @@ public class Nome
     {
         return nome;
     }
+    @SuppressWarnings("empty-statement")
     public String calcola(String s)
     {
        char vocali[] = new char[D];
        char consonanti[] = new char[D];
        char vett[] = new char[3];
+       
        for(int i = 0;i < vocali.length;i++)
         {
             vocali[i] = ' ';
@@ -43,15 +45,6 @@ public class Nome
         }
             String temp[] = new String[2];
                 s = s.replace(" ", "");
-                for(int i = 0; i < s.length();i++)
-		{
-			if(s.charAt(i) == ' ')
-			{
-				temp = s.split(" ");
-				s = String.valueOf(temp[0]);
-			        s = s.concat(temp[1]);
-			}
-                }
                 
                 int c=0;
                 for(int i = 0,v=0;i < s.length();i++)
@@ -81,7 +74,6 @@ public class Nome
 				break;
                         }
 		}
-                System.out.println("Nome : " + s);
 		
 		
 			for(int i = 0; i < vocali.length;i++)
@@ -94,9 +86,18 @@ public class Nome
 					}
 				}
 			}
-                       
-                        int k=1;
-                        int l;
+              
+                         boolean doppia;
+                         
+                        if(c>3)
+                        { 
+                          String appoggio = String.valueOf(consonanti);
+                          doppia = doppie(appoggio);
+                          if (doppia=false)
+                          {
+                              
+                              int k=1;
+                              int l;
 			for(l = 1; l < consonanti.length;l++)
 			{		
 					if(consonanti[l] != consonanti[l-1])
@@ -105,6 +106,7 @@ public class Nome
                                                 k++;
                                          }
                         }
+                        
                             char t[]=new char[D];
                             for(int i = 0,v=0;i < vocali.length;i++)
                             {
@@ -125,10 +127,16 @@ public class Nome
                                }
                             }
                           consonanti = p;
-                        
-                        if(c>3)
-                        {
-                             for (int i =0; i< consonanti.length; i++)
+                         
+                          for(int i = 0; i < vett.length;i++)
+                          {
+                              vett[i] = consonanti[i];
+                          }
+                          }
+                          else
+                          {
+                            
+                            for (int i =0; i< consonanti.length;i++)
                             {
                                 if(i==1)
                                 {
@@ -139,47 +147,67 @@ public class Nome
                                  }
                          
                             }
-                        
-                        for(int i = 0; i < vett.length ;i++)
-                        {
-                           vett[i] = consonanti[i];
-                           System.out.println(vett[i]);
+                            for(int i = 0; i < vett.length ;i++)
+                            {
+                                vett[i] = consonanti[i];
+                            }
                         }
                         }
                       if(c==3)
                       {
+                         
+                          consonanti=DeleteSpace(consonanti);
                           vett = consonanti;
                       }
                         if(c < 3)
                         {
-                           int i = 0;
-                       for(;!(vett[i] == '\0');i++);
-                      // System.out.println(i);
-                       if(i == 2)
-                       {
-                          vett[2] = vocali[0];
-                       }
-                       if(i == 1)
-                       {
-                           vett[1] = vocali[0];
-                           vett[2] = vocali[1];
-                       }
-                      
+                        
+                          consonanti=DeleteSpace(consonanti);
+                          vocali=DeleteSpace(vocali);
+                          int k=0;
+                          for( int i=0 ; i < vett.length && i < consonanti.length;i++)
+                          {
+                              if((!Character.isSpaceChar(vett[i]))||(!Character.isWhitespace(vett[i])))
+                              {
+                                    vett[i] = consonanti[i];
+                                    k++;
+                              }
+                               
+                          }
+                          int i=k;
+                             for( int v=0; i < vett.length && v< vocali.length;i++, v++)
+                          {
+                              if((!Character.isSpaceChar(vett[i]))||(!Character.isWhitespace(vett[i])))
+                              {
+                                    vett[i] = vocali[v];
+                                    k++;
+                              }
+                          }
+                        
+                           
+                         
+                        for(;i < vett.length;i++)
+                        {
+                            vett[i] = 'x';
+                        }
+                           this.setNome(String.valueOf(vett));
+                           return getNome(); 
                         }
                         
                        
-                        
-                         for(int i = 0;i < vett.length;i++)
-                        {
-                            if(vett[i]== ' ')
-                            {
-                                for(int v = 0;v < vett.length;v++,i++)
-                                {
-                                    vett[i] = 'x';
-                                }
-                            }
-                        }
-                         this.setNome(String.valueOf(vett));
+                         this.setNome(String.valueOf(vett)); 
                          return getNome();
         }
+    public static boolean doppie(String str) 
+    {
+        return (str.matches(".*(.)\\1.*"));
+    }
+    public char[] DeleteSpace(char[] d)
+    {
+        String a = String.valueOf(d);
+        a = a.replace(" ", "");
+        d= a.toCharArray();
+        return d;
+    }
 }
+

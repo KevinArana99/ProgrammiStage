@@ -9,10 +9,9 @@
  */
 public class Cognome 
 {
-    //datamember
+ 
     private String cognome;
     final int D = 14;
-    //attributi
     public Cognome()
     {
         cognome = "";
@@ -26,8 +25,9 @@ public class Cognome
         return cognome;
     }
     public void setCognome(String cognome)
-    {
+    {   
         this.cognome = cognome;
+       
     }
     @SuppressWarnings("empty-statement")
     public String calcola(String s)
@@ -35,6 +35,8 @@ public class Cognome
         char vocali[] = new char[D];
 	char consonanti[] = new char[D];
         char vett[] = new char[3];
+     
+                          
         for(int i = 0;i < vocali.length;i++)
         {
              vocali[i] = ' ';
@@ -69,7 +71,10 @@ public class Cognome
 		consonanti[c] = s.charAt(i);c++;
 		break;
 	    }
+             
 	 }
+        consonanti=DeleteSpace(consonanti);
+             vocali=DeleteSpace(vocali);
 	     for(int i = 0; i < vocali.length;i++)
 	     {
 		for(int j = 1;i+j < vocali.length;j++)
@@ -80,56 +85,117 @@ public class Cognome
 		   }
 		}
              }
-                int k=1;
-                int l;
-             for(l = 1; l < consonanti.length;l++)
-	     {		
-		if(consonanti[l] != consonanti[l-1])
-		{
-                    consonanti[k] = consonanti[l];
-                    k++;
-                    //  c--;
-		}
-             }
-                char t[]=new char[D];
-                for(int i = 0,v=0;i < vocali.length;i++)
-                 {
-                    if(vocali[i]!=' ')
-                    {
-                        t[v]=vocali[i];
-                        v++;
-                    }
-                 }
-                     vocali = t;
-                     char p[]=new char[D];
-                     for(int i = 0,v=0;i < consonanti.length;i++)
-                     {
-                        if(consonanti[i]!=' ')
-                        {
-                            p[v]=consonanti[i];
-                            v++;
-                        }
-                     }
-                            consonanti = p;
-                        for(int i = 0; i < vett.length ;i++)
-                        {
-                           vett[i] = consonanti[i];
-                        }
-                        if(c < 3)
-                        {
-                            int i = 0;
-                            for(;!(vett[i] == '\0');i++);
-                            if(i == 2)
-                            {
-                                 vett[2] = vocali[0];
+                        boolean doppia;
+                        if(c>3)
+                        { 
+                            String appoggio = String.valueOf(consonanti);
+                            doppia = doppie(appoggio);
+                          if (doppia)
+                          {
+                              int k=1;
+                              int l;
+                            for(l = 1; l < consonanti.length;l++)
+                            {		
+				if(consonanti[l] != consonanti[l-1])
+				{
+					consonanti[k] = consonanti[l];
+                                        k++;
+                                }
                             }
-                            if(i == 1)
+                        
+                            char t[]=new char[D];
+                            for(int i = 0,v=0;i < vocali.length;i++)
                             {
-                                vett[1] = vocali[0];
-                                vett[2] = vocali[1];
-                            }                   
+                               if(vocali[i]!=' ')
+                               {
+                                   t[v]=vocali[i];
+                                    v++;
+                               }
+                            }
+                          vocali = t;
+                          char p[]=new char[D];
+                          for(int i = 0,v=0;i < consonanti.length;i++)
+                            {
+                               if(consonanti[i]!=' ')
+                               {
+                                   p[v]=consonanti[i];
+                                    v++;
+                               }
+                            }
+                          consonanti = p;
+                         
+                          for(int i = 0; i < vett.length;i++)
+                          {
+                              vett[i] = consonanti[i];
+                          }
+                          }
+                          else
+                          {
+                            for(int i = 0; i < vett.length ;i++)
+                            {
+                                vett[i] = consonanti[i];
+                            }
                         }
-                            this.setCognome(String.valueOf(vett));
-                            return getCognome();
-    }   
+                          
+                    }
+                         if(c==3)
+                        {
+                          consonanti=DeleteSpace(consonanti);
+                          vett = consonanti;
+                         }
+                         
+                         
+                              if(c < 3)
+                        {
+                        
+                          consonanti=DeleteSpace(consonanti);
+                          vocali=DeleteSpace(vocali);
+                          int k=0;
+                          for( int i=0 ; i < vett.length && i < consonanti.length;i++)
+                          {
+                              if((!Character.isSpaceChar(vett[i]))||(!Character.isWhitespace(vett[i])))
+                              {
+                                    vett[i] = consonanti[i];
+                                    k++;
+                              }
+                               
+                          }
+                          int i=k;
+                             for( int v=0; i < vett.length && v< vocali.length;i++, v++)
+                          {
+                              if((!Character.isSpaceChar(vett[i]))||(!Character.isWhitespace(vett[i])))
+                              {
+                                    vett[i] = vocali[v];
+                                    k++;
+                              }
+                          }
+                        
+                           
+                         
+                        for(;i < vett.length;i++)
+                        {
+                            vett[i] = 'x';
+                        }
+                        
+                           this.setCognome(String.valueOf(vett));
+                           return getCognome(); 
+                        }
+                        
+                         
+                        
+     
+                         this.setCognome(String.valueOf(vett)); 
+                         return getCognome();
+   }
+    public char[] DeleteSpace(char[] d)
+    {
+        String a = String.valueOf(d);
+        a = a.replace(" ", "");
+        d= a.toCharArray();
+        return d;
+    }
+     public static boolean doppie(String str) 
+    {
+        return (str.matches(".*(.)\\1.*"));
+    }
 }

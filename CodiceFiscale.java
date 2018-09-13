@@ -16,10 +16,7 @@
  *
  * @author arana
  */
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+
 public class CodiceFiscale  
 {
     private String cognome;
@@ -27,11 +24,10 @@ public class CodiceFiscale
     private int gg, mm, aaaa;
     private char sesso;
     private String lnas;
+    protected String cfiscale;
     private String csvFile = "/Users/vubi/Desktop/anno 5/stage/Codici_Catastali.csv";
     final  int D = 20;
     boolean controllo;
-    
-    protected String cfiscale;
     
     public CodiceFiscale()
     {
@@ -59,39 +55,61 @@ public class CodiceFiscale
                sesso=uomo;     
      return true;   
     }     
-    
+    public String GetCognome()
+    {
+        return cognome;
+    }
+    //GET DATI//
+    public String GetNome()
+    {
+        return nome;
+    }
+    public int [] GetData()
+    {
+        int vett[];
+        vett = new int [3];
+        vett[0]=gg;
+        vett[1]=mm;
+        vett[2]=aaaa;
+        return vett;
+    }
+    public char GetSesso()
+    {
+        return sesso;
+    }
+    public String GetLuogo()
+    {
+    return lnas;
+    }
     public String GetCfiscale()
     {
         return cfiscale;     
     }         
-     
-        
+
     public String Calcola()
     { 
         Cognome c = new Cognome(cognome);
         Nome n = new Nome(nome);
-     
-        if(sesso == 'f')
+        Data d = new Data(aaaa,mm,gg);
+        LuogoDiNascita l = new LuogoDiNascita (lnas);
+        if((sesso == 'f')||(sesso == 'F'))
             controllo=true;
         else
         controllo=false;
-        Data d = new Data(gg,mm,aaaa);
         String con = c.calcola(cognome);
         String nom = n.calcola(nome);
-        String dat = d.calcola(gg, mm, D, controllo);
-        LuogoDiNascita l = new LuogoDiNascita (lnas);
-        //  PRENDI LE CONSONANTI //
+        String dat = d.calcola(aaaa, mm, gg, controllo);
         String Ccomune = l.calcola(lnas);
-        
+        //  PRENDI LE CONSONANTI //
        cfiscale = cfiscale.concat(con);
        cfiscale = cfiscale.concat(nom);
        cfiscale = cfiscale.concat(dat);
-      
-       cfiscale+=String.valueOf(Ccomune);
-       cfiscale=cfiscale.toUpperCase();
+      cfiscale = cfiscale.concat(Ccomune);
+       
         //metto le celle del vettore in posizione pari nel vettore pari
-      String cCcodcon = this.Ccodcon();
-      cfiscale = cfiscale.concat(cCcodcon);  
+      //String cCcodcon = this.Ccodcon();
+     // cfiscale = cfiscale.concat(cCcodcon);  
+      cfiscale=cfiscale.toUpperCase();
         return GetCfiscale();
     }    
 }
