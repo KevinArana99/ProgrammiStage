@@ -1,3 +1,6 @@
+package com.BikeSharing.kevin;
+
+
 import java.util.HashMap;
 import java.util.Map;
 /*
@@ -6,6 +9,81 @@ import java.util.Map;
  * and open the template in the editor.
  */
 
+/**
+ *
+ * @author Kevin
+ */
+/*
+public class Data
+{
+    private int g,m,a;
+    public Data()
+    {
+        g=m=a=0;
+    }
+    public Data(int a,int m,int g)
+    {
+        setData(g,m,a);
+    }
+    public void setData(int a,int m,int g)
+    {
+        this.g = g;
+        this.m = m;
+        this.a = a;
+    }
+    public int[] getData()
+    {
+        int v[] = new int[3];
+        v[0] = g;
+        v[1] = m;
+        v[2] = a;
+        return v;
+    }
+    public String calcola(int a,int m,int g,boolean f)
+    {
+         //ANNO
+        String vett = "";
+        System.out.println("anno : "+ a);
+        int r = a%100;
+        System.out.println("resto : "+ r);
+        String anno = Integer.toString(r);
+        vett = vett.concat(anno);
+         System.out.println(vett);
+        //MESE      
+        Map mesi  = new HashMap();
+        mesi.put(1,'A');
+        mesi.put(2,'B');
+        mesi.put(3,'C');
+        mesi.put(4,'D');
+        mesi.put(5,'E');
+        mesi.put(6,'H');
+        mesi.put(7,'L');
+        mesi.put(8,'M');
+        mesi.put(9,'P');
+        mesi.put(10,'R');
+        mesi.put(11,'S');
+        mesi.put(12,'T');
+        if(mesi.containsKey(m))
+            vett = vett.concat(String.valueOf(mesi.get(m)));
+         System.out.println(vett);
+          //GIORNO
+        if(f)
+        {
+            g=g+40;
+            String giorno = Integer.toString(g);
+            vett = vett.concat(giorno);
+            System.out.println(vett);
+        }
+        else
+        {
+            String giorno = Integer.toString(g);
+            vett = vett.concat(giorno);
+            System.out.println(vett);
+        }
+        return String.valueOf(vett);
+    }
+}
+*/
 /**
  *
  * @author Kevin
@@ -85,4 +163,5 @@ public class Data
         return String.valueOf(vett);
     }
 }
+
 

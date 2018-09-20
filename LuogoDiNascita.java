@@ -1,3 +1,5 @@
+package com.BikeSharing.kevin;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -42,7 +44,7 @@ public class LuogoDiNascita
     public String calcola (String a)
         {
             
-       String csvFile = "/Users/vubi/Desktop/anno 5/stage/Codici_Catastali.csv";
+       String csvFile = "/Users/Kevin/Documents/Codici_Catastali.csv";
         BufferedReader br = null;
         String line = "";
         String cvsSplitBy = ";";

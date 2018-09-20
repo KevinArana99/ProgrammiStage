@@ -1,3 +1,5 @@
+package com.BikeSharing.kevin;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,7 +18,6 @@
  *
  * @author arana
  */
-
 public class CodiceFiscale  
 {
     private String cognome;
@@ -25,7 +26,7 @@ public class CodiceFiscale
     private char sesso;
     private String lnas;
     protected String cfiscale;
-    private String csvFile = "/Users/vubi/Desktop/anno 5/stage/Codici_Catastali.csv";
+    private String csvFile = "/Users/Kevin/Documents/Codici_Catastali.csv";
     final  int D = 20;
     boolean controllo;
     
@@ -92,6 +93,7 @@ public class CodiceFiscale
         Nome n = new Nome(nome);
         Data d = new Data(aaaa,mm,gg);
         LuogoDiNascita l = new LuogoDiNascita (lnas);
+        CodiceControllo cc = new CodiceControllo();
         if((sesso == 'f')||(sesso == 'F'))
             controllo=true;
         else
@@ -105,11 +107,12 @@ public class CodiceFiscale
        cfiscale = cfiscale.concat(nom);
        cfiscale = cfiscale.concat(dat);
       cfiscale = cfiscale.concat(Ccomune);
-       
         //metto le celle del vettore in posizione pari nel vettore pari
       //String cCcodcon = this.Ccodcon();
      // cfiscale = cfiscale.concat(cCcodcon);  
       cfiscale=cfiscale.toUpperCase();
+      String controlCode = String.valueOf(cc.calcola(cfiscale));
+      cfiscale = cfiscale.concat(controlCode);
         return GetCfiscale();
     }    
 }
